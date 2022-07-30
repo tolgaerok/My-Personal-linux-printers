@@ -1,4 +1,4 @@
-# Install nvidia-cuda-toolkit in a Ubuntu-based distro:
+# Install nvidia-cuda-toolkit in a Ubuntu-based distro:.......
 sudo apt install nvidia-cuda-toolkit
 
 
@@ -45,4 +45,5 @@ https://www.youtube.com/watch?v=RrRpXs2pkzg
 
 recommended:
 	gnome tweaks
-	extensions (green)
+	extensions (green)
+
