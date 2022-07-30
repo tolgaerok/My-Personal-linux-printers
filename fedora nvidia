@@ -1,0 +1,48 @@
+# Install nvidia-cuda-toolkit in a Ubuntu-based distro:
+sudo apt install nvidia-cuda-toolkit
+
+
+https://www.youtube.com/watch?v=RrRpXs2pkzg
+
+1. DNF Configuration
+	sudo nano /etc/dnf/dnf.conf
+
+	fastestmirror=True
+	max_parallel_downloads=10
+	defaultyes=True
+	keepcache=True
+
+2. System Update
+	sudo dnf clean all
+	sudo dnf update
+
+3. Enable RPM Fusion
+	https://rpmfusion.org/Configuration
+
+	sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
+	sudo dnf groupupdate core
+
+4. Adding Flatpaks
+	https://flatpak.org/setup/Fedora
+
+	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+07:33 - 5. Change Hostname
+	sudo hostnamectl set-hostname fedora36
+
+08:19 - 6. Install Media Codecs
+	sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
+
+	sudo dnf groupupdate sound-and-video
+
+	sudo dnf update -y
+	sudo dnf install akmod-nvidia
+	sudo dnf install xorg-x11-drv-nvidia-cuda
+
+
+
+
+recommended:
+	gnome tweaks
+	extensions (green)
