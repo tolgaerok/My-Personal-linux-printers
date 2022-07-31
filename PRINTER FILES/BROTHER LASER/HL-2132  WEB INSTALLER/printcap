@@ -1,0 +1,6 @@
+HL2132:\
+        :mx=0:\
+        :sd=/var/spool/lpd/HL2132:\
+        :sh:\
+        :lp=/dev/usb/lp0:\
+        :if=/usr/local/Brother/Printer/HL2132/lpd/filterHL2132:
