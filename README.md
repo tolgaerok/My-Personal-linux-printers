@@ -1,5 +1,10 @@
-# My Personal collection of scripts for linux install etc
-> July 31, 2022
+### My Personal collection of scripts for linux install etc
+
+##### July 31, 2022
+---
+
+
+
 
 
 Hi all
@@ -17,11 +22,10 @@ The following examples in my repo has worked on:
 My script file only works on the debian / ubuntu Derivative systems
 
 
-
 Regards,
-Tolga
+Tolga	:grinning:
+
+---
 
 ![This is an image](https://myoctocat.com/assets/images/base-octocat.svg)
 
-[^1]: Please be understanding as this is my first usage on github, im only here to help others who may have had similar issues as i did.
-    
