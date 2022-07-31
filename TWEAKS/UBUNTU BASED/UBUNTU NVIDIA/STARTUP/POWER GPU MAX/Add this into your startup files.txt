@@ -1,6 +1,6 @@
 #   Run Nvidia Power at Max
 #   Tolga
-#   31 July 31, 2022
+#   July 31, 2022
 
 
 NAME:       Nvidia Max Power
