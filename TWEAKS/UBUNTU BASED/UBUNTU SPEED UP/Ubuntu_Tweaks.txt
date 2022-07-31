@@ -8,7 +8,9 @@
 
 1.	Disable Mitigations
 
-	This will have a substantial increase in performance just by doing disable many mitigations that happen in multi-threaded systems. The more core count you have the greater the performance gain. Some performances increases can be as large as 30%, but the average increase is about 10%.
+	This will have a substantial increase in performance just by doing disable many mitigations that happen in multi-threaded systems. 
+	The more core count you have the greater the performance gain. Some performances increases can be as large as 30%, but the average 
+	increase is about 10%.
 
 	Add this to your /etc/default/grub under line GRUB_CMDLINE_LINUX="rhgb quiet":
 
@@ -17,7 +19,9 @@
 	
 	ZSwap for 16GB or Less Systems
 
-		Z Swap is the a neat Linux feature that compresses data that is about to enter your swap file. This causes it to be used quite a bit less and can give a performance uplift to those with a small amount of memory. If you have a system with 32GB or greater, I wouldn’t recommend doing this.
+		Z Swap is the a neat Linux feature that compresses data that is about to enter your swap file. This causes it to be used quite a 
+		bit less and can give a performance uplift to those with a small amount of memory. If you have a system with 32GB or greater, 
+		I wouldn’t recommend doing this.
 
 		Add this to your /etc/default/grub:
 
@@ -54,7 +58,9 @@
 
 		cat /proc/sys/vm/swappiness
 
-	However, if your system has more than 16GB RAM, then such high swappiness will do more harm than good. Since RAM is a much faster form of memory than regular storage space,  having files moved to the Swap partition will result in loss of performance when you already have enough RAM available.
+	However, if your system has more than 16GB RAM, then such high swappiness will do more harm than good. Since RAM is a much faster form of 
+	memory than regular storage space,  having files moved to the Swap partition will result in loss of performance when you already
+	have enough RAM available.
 
 	As such, it is advised you keep the swappiness value down to 10.
 
@@ -68,6 +74,62 @@
 	Now to check if TRIM for SSD is enabled on your system, type in the following command in your terminal:
 
 		sudo systemctl status fstrim.timer
+		
+	Set the automatic TRIM job to daily
+	
+	The cleaning action TRIM is recommended for the good performance of your SSD in the long run. Otherwise it might become slow after some time.
+	You can switch your system to automatic daily trimming as follows:
+	
+			sudo mkdir -v /etc/systemd/system/fstrim.timer.d
+	 	
+		Copy/paste the following command line into the terminal, in order to create a new file in that new folder:
+
+			sudo touch /etc/systemd/system/fstrim.timer.d/override.conf
+			
+		Copy/paste the following command line into the terminal, in order to edit the new file:
+
+			gedit admin:///etc/systemd/system/fstrim.timer.d/override.conf
+			
+		Now copy/paste this blue text into that empty text document:
+
+			[Timer]
+			OnCalendar=
+			OnCalendar=daily
+			
+		Reboot your computer
+		
+		Confirm that you've successfully edited trim's configuration by executing this terminal command:
+
+			systemctl cat fstrim.timer
+
+		Your output should look approximately like this:
+
+			# /lib/systemd/system/fstrim.timer
+			[Unit]
+			Description=Discard unused blocks once a week
+			Documentation=man:fstrim
+			ConditionVirtualization=!container
+
+			[Timer]
+			OnCalendar=weekly
+			AccuracySec=1h
+			Persistent=true
+
+			[Install]
+			WantedBy=timers.target
+
+			# /etc/systemd/system/fstrim.timer.d/override.conf
+			[Timer]
+			OnCalendar=
+			OnCalendar=daily
+	
+	You can execute TRIM manually as well. You can use a single terminal command that will execute TRIM on all mounted partitions that support it:
+	
+		sudo fstrim -av
+		
+	Note (1): it's possible that manually executing fstrim with -av doesn't work. In that case, use this command:
+
+		sudo fstrim -v /
 
 	If it’s disabled, type in these commands to enable it:
 
@@ -76,11 +138,13 @@
 
 8. Enable HDD drive caching
 
-	Enabling HDD Drive caching can noticeably improve overall system performance by reducing the delay between data writes. But on the downside, it can lead to potential data loss if your computer suddenly turns off because of a power failure.
+	Enabling HDD Drive caching can noticeably improve overall system performance by reducing the delay between data writes. But on the downside, 
+	it can lead to potential data loss if your computer suddenly turns off because of a power failure.
 
 	As such, only use this feature if you write a lot of data and have some power backup (UPS or Inverter) connected to your system.
 
-	With that being said, to enable HDD Drive Caching, go to the app menu and search for Disks. Open the app, click on the three-dot button, and go to Drive Settings.
+	With that being said, to enable HDD Drive Caching, go to the app menu and search for Disks. Open the app, click on the three-dot 
+	button, and go to Drive Settings.
 	
 	Switch to the Write Cache tab and enable the option “Apply Write Cache Settings.”
 
@@ -97,14 +161,16 @@
 	And that’s it! You will now be able to install Snap apps to your Linux Mint system. To install Snap packages, type in the following command:
 
 	sudo snap install <packagename>
-	Alternatively, you can also use the Snap Store, which offers a GUI to help you install, uninstall, and manage your Snap packages. To install the Snap Store, type in the following command in your terminal:
+	Alternatively, you can also use the Snap Store, which offers a GUI to help you install, uninstall, and manage your Snap packages. 
+	To install the Snap Store, type in the following command in your terminal:
 
 		sudo snap install snap-store
 
 
 10. Clean and optimize your system
 
-	By now, you have downloaded a lot of extra apps & packages and made so many changes to your Linux Mint installation. As such, this is the perfect time to clean your system of unnecessary junk files and optimize overall performance.
+	By now, you have downloaded a lot of extra apps & packages and made so many changes to your Linux Mint installation. As such, 
+	this is the perfect time to clean your system of unnecessary junk files and optimize overall performance.
 
 	For this, you can try out the following commands:
 
