@@ -1,0 +1,8 @@
+#   Run Nvidia Power at Max
+#   Tolga
+#   31 July 31, 2022
+
+
+NAME:       Nvidia Max Power
+COMMAND:    nvidia-settings -a [gpu:0]/GpuPowerMizerMode=1
+COMMENT:    PowerMizer Full/Max
