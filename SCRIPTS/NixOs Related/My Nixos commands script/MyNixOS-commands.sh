@@ -2,6 +2,7 @@
 
 # Tolga Erok    10/6/2023   Basic script that allows user to run common Nix commands at sudo level.
 # Change log: corrected nix commands in menu
+# Change log: syntax error in delete old gens: -p option was not properly enclosed in quote
 
 # Function to execute a command in sudo mode
 execute_command() {
@@ -51,7 +52,7 @@ delete_old_generations() {
 
     # Prompt for generation to delete
     read -p $'\n\033[1;33mEnter the generation to delete (0 to cancel): \033[0m' choice
-    if [[ $choice -gt 0 ]]; then
+    if [[ "$choice" -gt 0 ]]; then
         execute_command "sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations $choice"
     fi
 }
