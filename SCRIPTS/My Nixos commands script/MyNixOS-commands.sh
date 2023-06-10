@@ -1,5 +1,7 @@
 #!/run/current-system/sw/bin/bash
 
+# Tolga Erok    10/6/2023   Basic script that allows users to execute various Nix-related commands with sudo privileges.
+
 # Function to execute a command in sudo mode
 execute_command() {
     echo -e "\033[1;33mExecuting command: sudo $1\033[0m"
