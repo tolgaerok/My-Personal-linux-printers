@@ -1,8 +1,9 @@
+#!/bin/env bash
 #!/run/current-system/sw/bin/bash
 
 # Tolga Erok    10/6/2023   Basic script that allows user to run common Nix commands at sudo level.
-# Change log: corrected nix commands in menu
-# Change log: syntax error in delete old gens: -p option was not properly enclosed in quote
+# Change log: corrected nix commands in menu, syntax error in delete old gens: -p option was not properly enclosed in quote
+# Change log: add #!/bin/env bash to follow POIX standards
 
 # Function to execute a command in sudo mode
 execute_command() {
