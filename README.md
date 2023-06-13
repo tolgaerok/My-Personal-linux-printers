@@ -7,19 +7,21 @@
 
 
 
-Hi all
+Hello,
 
-I'm aware that there are numerous smb conf examples available on the internet, 
-but I thought I'd share my personal configuration in case it can help others get their linux file sharing up and running.
+I would like to share my personal configuration in the hope that it can assist others in setting up their Linux systems. Even though there are already numerous configuration examples available on the internet and GitHub, I believe that my specific configuration may offer some valuable insights. If you encounter any areas that require correction or have any questions, please feel free to reach out to me.
 
-The following examples in my repo has worked on:
-```
+I have successfully tested the following operating systems with the examples provided in my repository:
+
 - MxLinux
 - LinuxMint
 - Fedora
 - RockyLinux 9
-```
-My script file only works on the debian / ubuntu Derivative systems
+- NixOS
+- Fedora
+
+Thank you for your attention.
+
 
 
 Regards,
