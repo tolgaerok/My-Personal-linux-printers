@@ -15,9 +15,14 @@ To streamline my workflow, I've also developed a set of personal scripts that as
 
 As an enthusiast of NixOS, a powerful Linux distribution with a declarative approach to system configuration, I've created a custom configuration file tailored to my needs. In this file, I've set specific variables related to Bluetooth devices. By configuring these variables, I can easily manage my Bluetooth devices and ensure a seamless experience.
 
+![Screenshot_20230610_144645](https://github.com/tolgaerok/Linux-Tweaks-And-Scripts/assets/110285959/af6b682f-0ddd-45bc-babc-0584b0e70884)
+
+
 ## Calling Common NixOS Commands with a Custom Script
 
 To further simplify my interactions with NixOS, I've developed a custom script that encapsulates the most frequently used commands. With this script, I can quickly execute common tasks such as updating the system, installing packages, or configuring services. This saves me the hassle of remembering or typing out lengthy commands each time I need to perform these operations.
+
+![1](https://github.com/tolgaerok/Linux-Tweaks-And-Scripts/assets/110285959/ae14cea8-dae9-4ea9-842d-7232e62ca9ff)
 
 ## Conclusion
 
