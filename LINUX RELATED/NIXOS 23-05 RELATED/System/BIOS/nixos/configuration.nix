@@ -67,7 +67,7 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.tolga = {
+  users.users.xxxxx = {  # Add your own user-name in place of xxxxx
     isNormalUser = true;
     description = "xxxxxxx"; # Add your full-name in place of the xxxxxxx
     extraGroups = [ "networkmanager" "wheel" ];
