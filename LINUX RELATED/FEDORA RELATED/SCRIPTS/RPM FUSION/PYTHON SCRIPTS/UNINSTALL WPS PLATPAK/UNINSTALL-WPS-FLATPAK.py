@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# Tolga Erok  15/5/2023 Uninstall WPS flatpak
+
 import os
 
 # List installed flatpaks
