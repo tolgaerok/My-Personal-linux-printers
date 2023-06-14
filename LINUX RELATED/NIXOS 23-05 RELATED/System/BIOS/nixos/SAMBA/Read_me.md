@@ -42,12 +42,16 @@ Outline for configuring Samba examples in the NixOS configuration.nix file:
 
 Once these steps are completed, your Samba configuration should be updated, and the user should have appropriate permissions and access to the specified directory.
 
-Summary:
-sudo  mkdir /home/NixOs-KDE       # Change to your suitings
-sudo  chmod 770 /home/NixOs-KDE   # Change to your suitings
-sudo groupadd samba               # Change to your suitings
-sudo useradd -m <USERNAME>
-sudo smbpasswd -a <USERNAME>
-sudo usermod -aG samba <USERNAME>
+   
+Summary:   
+1. `sudo  mkdir /home/NixOs-KDE`       ---( Change to your suitings )
+2. `sudo  chmod 770 /home/NixOs-KDE`   ---( Change to your suitings )
+3. `sudo groupadd samba`               ---( Change to your suitings )
+4. `sudo useradd -m <USERNAME>`
+5. `sudo smbpasswd -a <USERNAME>`
+6. `sudo usermod -aG samba <USERNAME>`   
 
+![samba 2](https://github.com/tolgaerok/Linux-Tweaks-And-Scripts/assets/110285959/f8001c9f-d1e1-4de8-8eb0-b29c8897375a)
+   
+![samba working](https://github.com/tolgaerok/Linux-Tweaks-And-Scripts/assets/110285959/a22909bd-bbcd-41a4-adba-f951963c93b3)
 
