@@ -61,6 +61,11 @@ while true; do
   esac
 
   clear
+  
+  # Create mount point if it doesn't exist
+  if [[ ! -d "$DEST_DIR" ]]; then
+    sudo mkdir -p "$DEST_DIR"
+  fi
 
   # Mount smb share
   sudo mount -t cifs //$SERVER_IP/LinuxData/HOME/PROFILES/$distro/$USERNAME $DEST_DIR -o $MOUNT_OPTIONS
