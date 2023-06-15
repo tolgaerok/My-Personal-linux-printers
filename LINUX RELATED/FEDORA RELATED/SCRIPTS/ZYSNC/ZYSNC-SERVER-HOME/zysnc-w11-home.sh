@@ -4,7 +4,7 @@
 # 11/5/2023
 # About:
 #   Personal RSYNC script that only rsyncs selected folders listed in INCLUDE_FOLDERS variables
-#   excluding ALL hidden files and folders from /mnt/smb-rsync to /home/tolga/
+#   excluding ALL hidden files and folders from //192.168.0.12/LinuxData/HOME/PROFILES/$distro/$USERNAME to /home/tolga/
 
 clear
 
