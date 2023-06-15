@@ -1,17 +1,18 @@
-#!/run/current-system/sw/bin/bash
+#!/usr/bin/env bash
 
 # Tolga Erok
-# 12/5/2023
+# 11/5/2023
 # About:
 #   Personal RSYNC script that only rsyncs selected folders listed in INCLUDE_FOLDERS variables
-#   excluding ALL hidden files and folders from //192.168.0.3/LinuxData/HOME/tolga into /home/tolga
+#   excluding ALL hidden files and folders from /mnt/smb-rsync to /home/tolga/
+
 clear
 
-SOURCE_DIR="/home/tolga"  # Change according to your home directory
-DEST_DIR="/mnt/smb-rsync" # Create this mnt point as its used as a tmp writing location
-USERNAME="XXX"            # Add user-name
-PASSWORD="XXX"            # Add password
-SERVER_IP="xxx.xxx.x.x"   # Add IP address of destination
+SOURCE_DIR="/mnt/smb-rsync/"
+DEST_DIR="/home/tolga/"
+USERNAME="xxx"
+PASSWORD="xxx"
+SERVER_IP="192.168.0.12"
 MOUNT_OPTIONS="credentials=/etc/samba/credentials,uid=$USER,gid=samba,file_mode=0777,dir_mode=0777"
 
 # Unmount smb share
@@ -62,6 +63,11 @@ while true; do
 
   clear
 
+  # Create mount point if it doesn't exist
+  if [[ ! -d "$SOURCE_DIR" ]]; then
+    sudo mkdir -p "$SOURCE_DIR"
+  fi
+
   # Mount smb share
   sudo mount -t cifs //$SERVER_IP/LinuxData/HOME/PROFILES/$distro/$USERNAME $SOURCE_DIR -o $MOUNT_OPTIONS
 
@@ -110,16 +116,3 @@ while true; do
   read -s -r
   clear
 done
-
-
-
-
-
-
-
-
-
-
-
-
-
