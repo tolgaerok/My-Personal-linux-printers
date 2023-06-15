@@ -5,66 +5,112 @@
 # About:
 #   Personal RSYNC script that only rsyncs selected folders listed in INCLUDE_FOLDERS variables
 #   excluding ALL hidden files and folders from //192.168.0.3/LinuxData/HOME/tolga into /home/tolga
-#
-# Version: 1.2
-#
-# Change log:
-#   Added "Music" into INCLUDE_FOLDERS variables
-# Corrected wrong permissions and group created on /home/tolga when transferred back into home folder:
-#   Added sudo chown -R tolga:tolga "$DEST_DIR/$folder"
-#   Added sudo chmod -R u+rwx "$DEST_DIR/$folder"
+clear
 
-# set variables
-INCLUDE_FOLDERS=(
-    "Desktop"
-    "Documents"
-    "Downloads"
-    "Music"
-    "Pictures"
-    "Public"
-    "Templates"
-    "Videos"
-)
-EXCLUDE_DIRS=(
-    ".cache"
-)
-
-SOURCE_DIR="/mnt/smb-rsync"
-DEST_DIR="/home/tolga"
+SOURCE_DIR="/home/tolga"  # Change according to your home directory
+DEST_DIR="/mnt/smb-rsync" # Create this mnt point as its used as a tmp writing location
 USERNAME="XXX"            # Add user-name
 PASSWORD="XXX"            # Add password
 SERVER_IP="xxx.xxx.x.x"   # Add IP address of destination
-MOUNT_OPTIONS="username=$USERNAME,password=$PASSWORD,uid=$USER,gid=$(id -g),file_mode=0777,dir_mode=0777"
+MOUNT_OPTIONS="credentials=/etc/samba/credentials,uid=$USER,gid=samba,file_mode=0777,dir_mode=0777"
 
-# create mount point if it doesn't exist
-if [ ! -d "$SOURCE_DIR" ]; then
-  sudo mkdir -p "$SOURCE_DIR"
-fi
+# Unmount smb share
+sudo umount -f /mnt/*
+sudo umount -l /mnt/*
 
-# check if already mounted
-if mountpoint -q "$SOURCE_DIR"; then
-  echo "Mount point already in use: $SOURCE_DIR"
-  exit 1
-fi
+# Reload daemon and fstab
+sudo systemctl daemon-reload
 
-# mount smb share
-sudo mount -t cifs "//$SERVER_IP/LinuxData/HOME/$USERNAME" "$SOURCE_DIR" -o "$MOUNT_OPTIONS"
+while true; do
+  # Menu options
+  echo -e "\n\e[1;31mRSYNC from W11 > /home/tolga\e[0m"
+  echo -e "\e[1;34mPlease select a Linux distribution profile:\e[0m"
+  echo "1. Fedora"
+  echo "2. NixOS"
+  echo "3. RHEL 9.2"
+  echo "4. Mint"
+  echo "5. Start again"
+  echo "6. Exit"
+  read -p "Enter your choice: " choice
 
-# check if mount was successful
-if [ $? -ne 0 ]; then
-  echo "Failed to mount SMB share"
-  exit 1
-fi
+  case $choice in
+      1)
+          distro="FEDORA"
+          ;;
+      2)
+          distro="NIXOS-23-05"
+          ;;
+      3)
+          distro="RHEL-9"
+          ;;
+      4)
+          distro="MINT"
+          ;;
+      5)
+          clear
+          continue
+          ;;
+      6)
+          echo "Exiting..."
+          exit 0
+          ;;
+      *)
+          echo "Invalid choice. Please try again."
+          continue
+          ;;
+  esac
 
-# rsync
-for folder in "${INCLUDE_FOLDERS[@]}"; do
-  rsync -avz --exclude="${EXCLUDE_DIRS[@]}" "$SOURCE_DIR/$folder/" "$DEST_DIR/$folder/"
-  sudo chown -R "$USERNAME:users" "$DEST_DIR/$folder"  #  Change users in "$USERNAME:users" to your user name (root, fred, sleepy_joe_biden etc)
-  sudo chmod -R 0777 "$DEST_DIR/$folder"
+  clear
+
+  # Mount smb share
+  sudo mount -t cifs //$SERVER_IP/LinuxData/HOME/PROFILES/$distro/$USERNAME $SOURCE_DIR -o $MOUNT_OPTIONS
+
+  # Rsync
+  INCLUDE_FOLDERS=(
+      "Desktop"
+      "Documents"
+      "Downloads"
+      "Music"
+      "Pictures"
+      "Public"
+      "Templates"
+      "Videos"
+  )
+  EXCLUDE_DIRS=(
+      ".*"
+  )
+
+  for folder in "${INCLUDE_FOLDERS[@]}"; do
+      echo -e "\e[1;34mSyncing $folder...\e[0m"
+      if [[ "$folder" == "Desktop" ]]; then
+          rsync -avz --progress --exclude="${EXCLUDE_DIRS[@]}" --update --exclude="*.iso*" --chown=$USER:$USER "$SOURCE_DIR/$folder/" "$DEST_DIR/$folder/"
+      else
+          rsync -avz --progress --exclude="${EXCLUDE_DIRS[@]}" --update --chown=$USER:$USER "$SOURCE_DIR/$folder/" "$DEST_DIR/$folder/"
+      fi
+      echo -e "\e[1;31mFinished syncing $folder\e[0m"
+      echo
+      sleep 1
+      clear
+  done
+
+  # Reload daemon, fstab, and mount -a
+  sudo systemctl daemon-reload && sudo mount -a
+
+  # Show last update details for transferred folders
+  echo -e "\e[1;34mLast update details for transferred folders:\e[0m\n"
+  for folder in "${INCLUDE_FOLDERS[@]}"; do
+      if [[ -d "$DEST_DIR/$folder" ]]; then
+          last_update=$(stat -c "%y" "$DEST_DIR/$folder" | cut -d' ' -f1)
+          data_size=$(du -sh "$DEST_DIR/$folder" | cut -f1)
+          printf "%-12s - Last Update: %-10s, Data Size: %-10s\n" "$folder" "$last_update" "$data_size"
+      fi
+  done
+
+  echo -e "\n\e[1;31mPress Enter to go back to the menu.\e[0m"
+  read -s -r
+  clear
 done
 
-# unmount smb share
-sudo umount "$SOURCE_DIR"
 
 
 
