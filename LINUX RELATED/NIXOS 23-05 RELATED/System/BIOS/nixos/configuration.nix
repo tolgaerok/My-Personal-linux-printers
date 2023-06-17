@@ -67,7 +67,7 @@ in {
   # Allow Unfree Packages
   nixpkgs.config.allowUnfree = true;
 
-  # Nix-specific settings and garbage collection options
+  # Nix-specific settings and garbage collection options - Mostly research from NixOS wiki
   nix = {
     settings = {
       allowed-users = [ "@wheel" ];
@@ -85,7 +85,7 @@ in {
     };
   };
 
-  # Allow insecure or old pkgs
+  # Allow insecure or old pkgs - Help from nix package manager
   nixpkgs.config.permittedInsecurePackages =
     [ "openssl-1.1.1u" "python-2.7.18.6" ];
 
@@ -201,7 +201,7 @@ in {
     zstd
   ];
 
-  # Custom fonts
+  # Custom fonts - Chris Titus setup
   fonts.fonts = with pkgs; [
     noto-fonts
     noto-fonts-cjk
@@ -213,6 +213,7 @@ in {
   ];
 
   # Provides a virtual file system for environment modules
+  # Solution from NixOS forums to help shotwell to keep preference settings
   services.envfs.enable = true;
 
   # Define a set of programs and their respective configurations
@@ -222,17 +223,18 @@ in {
     mtr = { enable = true; };
   };
 
-  # Provide a graphical Bluetooth manager for desktop environments
+  # Provide a graphical Bluetooth manager for desktop environments - Help from NixOS forums
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  # Enables support for Flatpak
+  # Enables support for Flatpak - Flatpak website
   services.flatpak.enable = true;
 
   # Enables the D-Bus service, which is a message bus system that allows communication between applications
+  # Thanks Chris Titus!
   services.dbus.enable = true;
 
-  # Nvidia drivers
+  # Nvidia drivers - NixOS wiki and help from David T (You know who you are!)
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
@@ -265,20 +267,20 @@ in {
   services.udisks2.enable = true;
 
   # Enable the copying of system configuration files to the Nix store
-  # Automatic system upgrades, automatically reboot after an upgrade if necessary
+  # Automatic system upgrades, automatically reboot after an upgrade if necessary (Afew from Chris Titus)
   system.copySystemConfiguration = true;
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = true;
   system.stateVersion = "23.05";
 
-  # Provide NetBIOS name resolution in local networks, allowing Windows devices to discover and connect to the NixOS system
+  # Provide NetBIOS name resolution in local networks, allowing Windows devices to discover and connect to the NixOS system - NixOS wiki
   services.samba-wsdd.enable = true;
 
-  # Adding a rule to the iptables firewall to allow NetBIOS name resolution traffic on UDP port 137
+  # Adding a rule to the iptables firewall to allow NetBIOS name resolution traffic on UDP port 137 - NixOS wiki
   networking.firewall.extraCommands =
     "iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns";
 
-  # Samba Configuration
+  # Samba Configuration - NixOS wiki
   services.samba = {
     enable = true;
     package = pkgs.sambaFull;
@@ -300,7 +302,7 @@ in {
 
     shares = {
 
-      # Home Directories Share
+      # Home Directories Share - From my old fedora days
       homes = {
         comment = "Home Directories";
         browseable = false;
