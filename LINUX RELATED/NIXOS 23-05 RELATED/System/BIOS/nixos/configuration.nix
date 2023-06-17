@@ -234,7 +234,7 @@ in {
   # Thanks Chris Titus!
   services.dbus.enable = true;
 
-  # Nvidia drivers - NixOS wiki and help from David T (You know who you are!)
+  # Nvidia drivers - NixOS wiki and help from David Turcotte (https://davidturcotte.com)
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl.enable = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
