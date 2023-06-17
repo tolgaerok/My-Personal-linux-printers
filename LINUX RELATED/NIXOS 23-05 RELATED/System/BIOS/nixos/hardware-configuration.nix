@@ -33,8 +33,9 @@
     options = let
       automount_opts =
         "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-      uid = "1000";
-      gid = "100";
+
+      uid = "1000";    <========= Use sudo id <YOUR USERNAME> to establish your uid
+      gid = "100";      <========= Use sudo id <YOUR USERNAME> to establish your gid
 
     in [
       "${automount_opts},credentials=/etc/nixos/smb-secrets,uid=${uid},gid=${gid}"
