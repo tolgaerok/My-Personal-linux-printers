@@ -18,7 +18,7 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [ "mitigations=off" ];
-  # kernelPackages = pkgs.linuxPackages_latest;      <====  Remove # to enable to update to the latest kernel automatically, use at own risk!
+  # kernelPackages = pkgs.linuxPackages_latest;      # <====  Remove # to enable to update to the latest kernel automatically, use at own risk!
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/e465813a-xxxxxx";
@@ -34,8 +34,8 @@
       automount_opts =
         "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
 
-      uid = "1000";    <========= Use sudo id <YOUR USERNAME> to establish your uid
-      gid = "100";      <========= Use sudo id <YOUR USERNAME> to establish your gid
+      uid = "1000";    # <========= Use sudo id <YOUR USERNAME> to establish your uid
+      gid = "100";      # <========= Use sudo id <YOUR USERNAME> to establish your gid
 
     in [
       "${automount_opts},credentials=/etc/nixos/smb-secrets,uid=${uid},gid=${gid}"
