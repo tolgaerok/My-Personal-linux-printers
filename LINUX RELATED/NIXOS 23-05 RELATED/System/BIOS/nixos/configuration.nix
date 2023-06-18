@@ -95,12 +95,6 @@ in {
     atool
     bat
     blueberry
-    blueman
-    bluez-tools
-    bottom
-    btop
-    bzip2
-    cachix
     caprine-bin
     cifs-utils
     cliphist
@@ -179,11 +173,9 @@ in {
     sshpass
     stow
     sublime4
-    system-config-printer # Allow for easy configuration of printers and print queues on the system
     tig
     tldr
     tree
-    unrar
     unzip
     vim
     vlc
@@ -223,7 +215,7 @@ in {
     mtr = { enable = true; };
   };
 
-  # Provide a graphical Bluetooth manager for desktop environments - Help from NixOS forums
+  # Provide a graphical Bluetooth manager for desktop environments
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
@@ -244,39 +236,29 @@ in {
   hardware.sane.enable = true;
   hardware.sane.extraBackends = [ pkgs.epkowa ];
 
-  # Printers and drivers
+  # Printers and printer drivers (To suit my HP LaserJet 600 M601)
+  # In terminal: sudo NIXPKGS_ALLOW_UNFREE=1 nix-shell -p hplipWithPlugin --run 'sudo -E hp-setup'
+  services.printing.enable = true;
   services.avahi.enable = true;
   services.avahi.nssmdns = true;
   services.avahi.openFirewall = true;
-
-  services.printing.enable = true;
-  services.printing.stateless = true;
-  services.printing.webInterface = false;
-
-  services.printing.drivers = with pkgs; [
-    epson-escpr
-    epson-escpr2
-    foomatic-db
-    foomatic-db-ppds
-    gutenprint
-    hplip
-    splix
-  ];
+  services.printing.drivers =
+    [ pkgs.gutenprint pkgs.hplip pkgs.hplipWithPlugin ];
 
   # System daemon for managing storage devices such as disks and USB drives
   services.udisks2.enable = true;
 
   # Enable the copying of system configuration files to the Nix store
-  # Automatic system upgrades, automatically reboot after an upgrade if necessary (Afew from Chris Titus)
+  # Automatic system upgrades, automatically reboot after an upgrade if necessary
   system.copySystemConfiguration = true;
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = true;
   system.stateVersion = "23.05";
 
-  # Provide NetBIOS name resolution in local networks, allowing Windows devices to discover and connect to the NixOS system - NixOS wiki
+  # Adding a rule to the iptables firewall to allow NetBIOS name resolution traffic on UDP port 137 - NixOS wiki
   services.samba-wsdd.enable = true;
 
-  # Adding a rule to the iptables firewall to allow NetBIOS name resolution traffic on UDP port 137 - NixOS wiki
+  # Adding a rule to the iptables firewall to allow NetBIOS name resolution traffic on UDP port 137
   networking.firewall.extraCommands =
     "iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns";
 
@@ -356,5 +338,5 @@ in {
 
   # Add a systemd tmpfiles rule that creates a directory /var/spool/samba with permissions 1777 and ownership set to root:root.
   systemd.tmpfiles.rules = [ "d /var/spool/samba 1777 root root -" ];
-  
+
 }
