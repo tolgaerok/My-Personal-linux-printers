@@ -10,7 +10,7 @@ in {
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
-  # Activate the automatic trimming process for SSDs on the NixOS system
+  # Activate the automatic trimming process for SSDs on the NixOS system  <=== Manual over-ride is sudo sudo fstrim / -v
   services.fstrim.enable = true;
 
   # Networking
