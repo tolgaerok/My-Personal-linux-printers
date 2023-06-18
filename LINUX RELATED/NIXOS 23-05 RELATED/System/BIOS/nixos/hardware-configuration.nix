@@ -21,7 +21,7 @@
   # kernelPackages = pkgs.linuxPackages_latest;   # <====  Remove # to enable to update to the latest kernel automatically, use at own risk!
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/e465813a-3a1a-4629-b2a4-d0ca24aaf10d";
+    device = "/dev/disk/by-uuid/e465813a- XXXXXXXXXX";  # <==== Add your own uuid
     fsType = "ext4";
     # for ssd
     options =
