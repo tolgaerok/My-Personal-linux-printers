@@ -1,18 +1,15 @@
-Tolga Erok
-18/6/2023
-
 # *configuration.nix*
 Here's a brief summary of the script:
 
-1. The script starts by assigning the name "tolga" to the variable `name`.
+1. The script starts by assigning the name `tolga` to the `variable name`.
 2. The script then imports the `hardware-configuration.nix` file.
-3. The bootloader and system settings are configured to enable GRUB as the bootloader, set the device to "/dev/sda," and use OSProber for boot detection.
+3. The bootloader and system settings are configured to enable GRUB as the bootloader, set the device to `/dev/sda,` and use OSProber for boot detection.
 4. Automatic trimming process for SSDs is enabled.
-5. Networking settings are configured to disable IPv6, disable the firewall, allow ping, set the hostname to "NixOs," and enable NetworkManager.
-6. The time zone is set to "Australia/Perth," and the default locale is set to "en_AU.UTF-8." Additional locale settings are specified for various categories.
-7. X11 and KDE Plasma settings are configured to enable the X server, SDDM display manager, and KDE Plasma desktop. The layout is set to "au" (Australia).
+5. Networking settings are configured to disable IPv6, disable the firewall, allow ping, set the hostname to `NixOs,` and enable NetworkManager.
+6. The time zone is set to `Australia/Perth,` and the default locale is set to `en_AU.UTF-8.` Additional locale settings are specified for various categories.
+7. X11 and KDE Plasma settings are configured to enable the X server, SDDM display manager, and KDE Plasma desktop. The layout is set to `au` (Australia).
 8. Audio settings are configured to enable sound, disable PulseAudio, and enable RTKit for better real-time audio processing. Pipewire is also enabled with support for ALSA and PulseAudio.
-9. User configuration is specified for the user "tolga," including defining the user as a normal user, providing a description, assigning extra groups, and specifying packages to be installed for the user.
+9. User configuration is specified for the user `tolga,` including defining the user as a normal user, providing a description, assigning extra groups, and specifying packages to be installed for the user.
 10. Unfree packages are allowed.
 11. Nix-specific settings are configured, including allowed and trusted users, enabling various experimental features, and specifying garbage collection options.
 12. Insecure or old packages are permitted.
