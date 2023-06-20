@@ -1,7 +1,7 @@
 Tolga Erok
 18/6/2023
 
-# configuration.nix
+# *configuration.nix*
 Here's a brief summary of the script:
 
 1. The script starts by assigning the name "tolga" to the variable `name`.
@@ -28,5 +28,7 @@ Here's a brief summary of the script:
 22. NetBIOS name resolution and corresponding firewall rules are configured.
 23. Samba configuration is specified, including enabling Samba, setting the workgroup and server string, allowing specified hosts, defining share directories, and their permissions.
 
-# Summary
-In summary, the script sets up various system configurations and services, including bootloader, networking, time zone, locale, X11 and KDE Plasma, audio, user configuration, package collections, fonts, programs, Bluetooth, Flatpak, D-Bus, drivers (Nvidia and scanner), printers, Samba, and system-related settings.
+# *Summary*
+*In summary, the script sets up various system configurations and services, including bootloader, networking, time zone, locale, X11 and KDE Plasma, audio, user configuration, package collections, fonts, programs, Bluetooth, Flatpak, D-Bus, drivers (Nvidia and scanner), printers, Samba, and system-related settings.*
+
+[^note]:
