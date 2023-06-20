@@ -304,6 +304,11 @@ in {
       security = user
       hosts allow = 192.168.0. 127.0.0.1 localhost
       hosts deny = 0.0.0.0/0
+
+      # Set the minimum SMB protocol version on the client end
+      # Allow accessing old SMB protocols (SMB1 - COREPLUS)
+      client min protocol = COREPLUS
+
       guest account = nobody
       map to guest = bad user
       load printers = yes
