@@ -292,6 +292,7 @@ in {
     "iptables -t raw -A OUTPUT -p udp -m udp --dport 137 -j CT --helper netbios-ns";
 
   # Samba Configuration - NixOS wiki
+  # For a user to be authenticated on the samba server, you must add their password using sudo smbpasswd -a <user> as root
   services.samba = {
     enable = true;
     package = pkgs.sambaFull;
