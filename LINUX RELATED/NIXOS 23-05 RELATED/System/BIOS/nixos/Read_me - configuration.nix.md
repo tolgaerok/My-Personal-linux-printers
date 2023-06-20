@@ -1,3 +1,5 @@
+Tolga Erok 18/6/2023
+
 # *configuration.nix*
 Here's a brief summary of the script:
 
