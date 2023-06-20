@@ -61,7 +61,7 @@ in {
     isNormalUser = true;
     description = "tolga erok";
     extraGroups = [ "networkmanager" "wheel" "input" "disk" "video" "audio" ];
-    packages = with pkgs; [ firefox kate digikam ];
+    packages = with pkgs; [ ];
   };
 
   # Allow Unfree Packages
@@ -75,9 +75,12 @@ in {
       sandbox = true;
       trusted-users = [ "root" "${name}" ];
       warn-dirty = false;
+      # enable experimental features (needed for flakes)
+      #package = pkgs.nixFlakes;
       experimental-features = [ "nix-command" "flakes" "repl-flake" ];
     };
 
+    # Automatically trigger garbage collection
     gc = {
       automatic = true;
       dates = "weekly";
@@ -92,10 +95,11 @@ in {
   # Nix package collection (pkgs) that you want to include in the system environment.
   environment.systemPackages = with pkgs; [
     asciiquarium
+    asunder
     atool
     bat
     blueberry
-    caprine-bin
+    brasero
     cifs-utils
     cliphist
     cmatrix
@@ -103,17 +107,22 @@ in {
     cowsay
     delta
     dialog
+    digikam
     direnv
     doppler
     duf
     fd
     ffmpeg
+    ffmpegthumbnailer
     figlet
+    firefox
+    flatpak
     fx
     fzf
     gh
     gimp-with-plugins
     git
+    git-extras
     glow
     gnome.simple-scan
     google-chrome
@@ -135,20 +144,32 @@ in {
     kphotoalbum
     krename
     krita
+    krusader
+    lame
     less
     libarchive
     libbtbb
+    libdvdcss
+    libdvdread
+    libopus
+    libvorbis
+    lsdvd
     lolcat
     lz4
     lzip
     lzo
     lzop
+    ocamlPackages.gstreamer
     mariadb
     mosh
+    mp3fs
+    mpg123
+    mplayer
     mpv
     ncdu
     neofetch
     neovim
+    ntfs3g
     nix-direnv
     nixfmt
     nixos-option
@@ -159,6 +180,7 @@ in {
     pfetch
     pmutils
     powershell
+    pulseaudioFull
     pulumi
     python.pkgs.pip
     python311Full
@@ -167,8 +189,11 @@ in {
     ripgrep-all
     rzip
     samba
+    sane-backends
+    scanbd
     scala-cli
     shotwell
+    simplescreenrecorder
     sl
     sshpass
     stow
@@ -184,12 +209,16 @@ in {
     whatsapp-for-linux
     wl-clipboard
     wpsoffice
+    xdg-utils
     xdg-desktop-portal-gtk
+    xdg-launch
     xfce.thunar
     xz
     youtube-dl
     zip
     zsh
+    zsh-autosuggestions
+    zsh-syntax-highlighting
     zstd
   ];
 
