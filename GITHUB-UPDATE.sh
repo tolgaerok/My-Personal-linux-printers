@@ -15,11 +15,11 @@ cat <<EOF | while IFS= read -r cmd; do echo -e "\e[34m${cmd}\e[0m"; eval "${cmd}
  git commit -m "Commit Update"
  git config --global http.postBuffer 524288000
  git config --global core.compression 1
- git checkout master
+ git checkout main
  git add .
  git commit -m "Updated"
- git branch -M master
- git push -u origin master
+ git branch -M main
+ git push -u origin main
 EOF
 
 # Echo completion message in yellow
