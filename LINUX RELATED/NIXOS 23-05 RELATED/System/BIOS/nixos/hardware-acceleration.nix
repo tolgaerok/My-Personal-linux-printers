@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 
+# Intel hardware video acceleration and
+# VAAPI/VDPAU compatibility, which are more
+# relevant for Intel and AMD GPUs
+
 {
   nixpkgs.config.packageOverrides = pkgs: {
     vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
