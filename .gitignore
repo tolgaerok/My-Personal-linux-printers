@@ -1,5 +1,5 @@
 # ignore all .txt files
 *.txt
 .*
-GITHUB_UPDATE*
+GITHUB_UPDATE.sh
 
