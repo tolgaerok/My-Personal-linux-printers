@@ -23,8 +23,12 @@ git config --global core.compression 1
 git fetch origin
 git merge --allow-unrelated-histories origin/main --strategy=ours
 git branch -m main
-git branch -d master
-git push origin --delete master
+
+if git rev-parse --verify master >/dev/null 2>&1; then
+  git branch -d master
+  git push origin --delete master
+fi
+
 git push -u origin main
 EOF
 
