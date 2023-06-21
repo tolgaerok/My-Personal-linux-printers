@@ -1,5 +1,8 @@
 { config, lib, pkgs, ... }:
 
+# NVIDIA-specific configurations for hardware
+# video acceleration
+
 let
   inherit (pkgs) libva;
   inherit (pkgs.lib.makeOverridableArgs) override;
