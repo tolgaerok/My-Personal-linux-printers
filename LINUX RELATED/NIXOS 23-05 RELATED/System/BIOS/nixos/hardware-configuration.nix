@@ -18,10 +18,10 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
   boot.kernelParams = [ "mitigations=off" ];
-  # kernelPackages = pkgs.linuxPackages_latest;   # Remove # to enable to update to the latest kernel automatically, use at own risk!
+  # kernelPackages = pkgs.linuxPackages_latest;   # <====  Remove # to enable to update to the latest kernel automatically, use at own risk!
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/e465813a-3a1a-4629-b2a4-d0ca24aaf10d"; # Add your own uuid
+    device = "/dev/disk/by-uuid/e465813a-3a1a-4629-b2a4-d0ca24aaf10d";
     fsType = "ext4";
     # for ssd
     options =
