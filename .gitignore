@@ -1,8 +1,5 @@
-# Ignore all .txt files
-*.txt
-# Ignore files starting with a dot
+# Ignore dot files
 .*
-# Ignore .sh files
-*.sh
+GITHUB-UPDATE.sh
 
 
