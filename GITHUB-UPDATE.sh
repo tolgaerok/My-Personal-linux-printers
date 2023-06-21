@@ -21,7 +21,8 @@ git commit -m "Commit Update"
 git config --global http.postBuffer 524288000
 git config --global core.compression 1
 git fetch origin
-git merge --allow-unrelated-histories origin/main
+git merge --allow-unrelated-histories origin/main --strategy=ours
+git branch -m main
 git push -u origin main
 EOF
 
