@@ -21,14 +21,16 @@ git commit -m "Commit Update"
 git config --global http.postBuffer 524288000
 git config --global core.compression 1
 git fetch origin
-git merge --allow-unrelated-histories origin/main --strategy=ours
-git branch -m main
+EOF
 
 if git rev-parse --verify master >/dev/null 2>&1; then
   git branch -d master
   git push origin --delete master
 fi
 
+cat <<EOF
+git merge --allow-unrelated-histories origin/main --strategy=ours
+git branch -m main
 git push -u origin main
 EOF
 
