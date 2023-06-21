@@ -1,5 +1,8 @@
-# ignore all .txt files
+# Ignore all .txt files
 *.txt
+# Ignore files starting with a dot
 .*
+# Ignore .sh files
 *.sh
+
 
