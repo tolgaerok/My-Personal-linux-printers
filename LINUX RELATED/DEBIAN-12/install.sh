@@ -85,12 +85,36 @@ deb-src https://deb.debian.org/debian bookworm-backports main contrib non-free n
 " > /etc/apt/sources.list'
 
 sudo apt update && apt list --upgradable && sudo apt upgrade -y
-#sudo apt install nvidia-driver firmware-misc-nonfree -y
 
-#sudo nvidia-settings
+# Check GPU information
+gpu_info=$(lspci | grep -i 'VGA\|3D')
+if [[ -z $gpu_info ]]; then
+  echo "No GPU found."
+  exit 1
+fi
 
-# Install video acceleration for HD Intel i965
-sudo apt install -y i965-va-driver libva-drm2 libva-x11-2 vainfo
+# Check if NVIDIA GPU is present
+if [[ $gpu_info =~ "NVIDIA" ]]; then
+  # Check if NVIDIA drivers are already installed
+  if nvidia-smi &>/dev/null; then
+    echo "NVIDIA drivers are already installed."
+  else
+    # Install NVIDIA drivers
+    sudo apt update
+    sudo apt install nvidia-driver firmware-misc-nonfree -y
+    sudo apt install -y nvidia-driver
+    echo "NVIDIA drivers installed successfully."
+  fi
+
+  # Run NVIDIA settings
+  sudo nvidia-settings
+
+else
+  # Install video acceleration for HD Intel i965
+  sudo apt update
+  sudo apt install -y i965-va-driver libva-drm2 libva-x11-2 vainfo
+  echo "Video acceleration drivers installed successfully."
+fi
 
 # Install samba and create user/group
 read -r -p "Install samba and create user/group" -t 2 -n 1 -s && clear
