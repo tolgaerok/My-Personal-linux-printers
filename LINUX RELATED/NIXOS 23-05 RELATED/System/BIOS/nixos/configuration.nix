@@ -318,10 +318,7 @@ in {
     '';
 
     shares = {
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/main
       # Home Directories Share - From my old fedora days
       homes = {
         comment = "Home Directories";
