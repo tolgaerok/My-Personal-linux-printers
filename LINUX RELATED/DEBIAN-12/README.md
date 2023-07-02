@@ -1,3 +1,5 @@
-# My debian environment: 2/7/2023
+Tolga Erok
+2/7/2023
 
-Hey there! 👋 
+# *My debian environment*
+Here's a brief summary of my debian script:
