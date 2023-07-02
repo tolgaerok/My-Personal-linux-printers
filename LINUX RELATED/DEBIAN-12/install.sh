@@ -267,14 +267,14 @@ folder_path="/home/$username/Pictures/CustomWallpapers"
 if [ ! -d "$folder_path" ]; then
     echo "Creating folder 'CustomWallpapers'..."
     sudo mkdir -p "$folder_path"
-    sudo chown -R $username:$username "$folder_path"
     sudo chmod -R 700 "$folder_path"
+    sudo chown -R $username:$username "$folder_path"
 fi
 
 echo "Copying WALLPAPER to $folder_path..."
 sudo cp -r ./WALLPAPERS/* "$folder_path"
-sudo chown -R $username:$username "$folder_path"
 sudo chmod -R 700 "$folder_path"
+sudo chown -R $username:$username "$folder_path"
 
 echo "Continuing..."
 sleep 1
