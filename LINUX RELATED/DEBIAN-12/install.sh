@@ -324,18 +324,6 @@ mkdir -p "$original_folder"
 # Enable extglob option
 shopt -s extglob
 
-# Define the backup folder path
-backup_folder="/etc/samba/backup"
-
-# Create the backup folder if it doesn't exist
-mkdir -p "$backup_folder"
-
-# Define the original folder path
-original_folder="/etc/samba/ORIGINAL"
-
-# Create the original folder if it doesn't exist
-mkdir -p "$original_folder"
-
 # Move contents of /etc/samba (excluding ORIGINAL folder) to original folder
 mv /etc/samba/!(ORIGINAL) "$original_folder"
 
