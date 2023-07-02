@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Tolga Erok    My personal debian 12 installer
+# Tolga Erok    My personal debian 12 installer.
 # 28/6/2023
 
 # Check if Script is Run as Root
