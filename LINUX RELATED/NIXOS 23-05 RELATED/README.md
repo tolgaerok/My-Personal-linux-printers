@@ -6,7 +6,8 @@
   <img src="https://media.giphy.com/media/dWesBcTLavkZuG35MI/giphy.gif" width="600" height="300"/>
 </div>
 
-I have successfully tested the following operating systems with the examples provided in my repository:
+I have successfully coded, setup, and tested the following configurations and services in my NixOs operating system with the examples provided in my repository:
+
 
 <div align="left">
   <table style="border-collapse: collapse; width: 100%; border: none;">
@@ -22,7 +23,7 @@ I have successfully tested the following operating systems with the examples pro
 </div>
 
 
-Let's dive in!
+
 
 ## Syncing User Home Folder to a Specified Destination
 
