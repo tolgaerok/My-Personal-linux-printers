@@ -130,9 +130,9 @@ clear
 # Configure custom samba folder
 read -r -p "Create and configure custom samba folder" -t 2 -n 1 -s && clear
 
-sudo mkdir /home/Deb-12
-sudo chgrp samba /home/Deb-12
-sudo chmod 770 /home/Deb-12
+sudo mkdir /home/Deb12
+sudo chgrp samba /home/Deb12
+sudo chmod 770 /home/Deb12
 
 read -r -p "Continuing..." -t 1 -n 1 -s && clear
 clear
