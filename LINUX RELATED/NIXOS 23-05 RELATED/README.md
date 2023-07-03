@@ -12,7 +12,7 @@ I have successfully tested the following operating systems with the examples pro
   <table style="border-collapse: collapse; width: 100%; border: none;">
     <tr>
      <td align="center" style="border: none;">
-        <a href="https://github.com/tolgaerok/Linux-Tweaks-And-Scripts/tree/main/LINUX%20RELATED/NIXOS%2023-05%20RELATED">
+        <a href="https://nixos.org/">
           <img src="https://flathub.org/img/distro/nixos.svg" alt="NixOS" style="width: 100%;">
           <br>NixOS
         </a>
